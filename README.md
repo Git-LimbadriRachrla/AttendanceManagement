@@ -1,10 +1,10 @@
 # AttendanceManagement
 The Attendance Management system is developed using HTML, CSS,  JavaScript, PHP and MySql making it User-friendly Interface: 
-# Curious Coders Club - Student Management System
+# Curious Coders Club - Attendance Management System
 
 ## Overview
 
-This project is a Student Management System developed for the Curious Coders Club at JNTUH University College of Engineering Manthani. The system aims to streamline the management of club members, track attendance, and provide essential information about the club's activities.
+This project is a Attendance Management System developed for the Curious Coders Club at JNTUH University College of Engineering Manthani. The system aims to streamline the management of club members, track attendance, and provide essential information about the club's activities.
 
 ## Features
 
