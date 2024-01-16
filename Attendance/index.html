@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="download.ico">
+  <style>
+    body {
+      /* Dark blue background */
+      background-image: url('design1.jpg');
+      background-size: 98%;
+      background-position: center;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .content {
+      text-align: center;
+      transition: color 0.3s ease;
+      /* Shortened transition duration for faster change */
+    }
+
+    .content:hover {
+      border: 2px solid white;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .data {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .links {
+      font-size: x-large;
+    }
+
+    /* th.rotated {
+      padding: 20px;
+      animation: rotateText 5s infinite linear;
+    } */
+
+    @keyframes rotateText {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    td {
+      padding: 10px;
+    }
+    .attractive-link {
+      color:rgb(249, 213, 7);
+      text-decoration: none;
+      transition: color 0.3s ease-in-out;
+      padding: 5px 10px;
+      border: 1px solid #dee2e6;
+      border-radius: 5px;
+      margin: 10px;
+      display: inline-block;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .attractive-link:hover {
+      color: #0056b3;
+      background-color: #f8f9fa;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+
+    .animated-link {
+      animation: bounce 1s infinite;
+    }
+
+
+    #date-time {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    #calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1.25px;
+      width: 300px;
+      text-align: end;
+      margin-left: auto;
+    }
+
+    .day {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+
+    .today {
+      background-color: #4CAF50;
+      color: #fff;
+    }
+
+    .day-name {
+      text-align: center;
+      color: #ccc;
+      font-size: 16px;
+    }
+    footer{
+      text-align: center;  
+    }
+    .date-time{
+      text-align: center;
+    }
+    .foot{
+      height:60px;
+      background-color: rgba(32, 31, 31, 0.859);
+    }
+  </style>
+  <title>Club Home Page</title>
+</head>
+
+<body>
+  <div class="content" id="content">
+    <h1>CURIOUS CODER'S CLUB</h1>
+    Decoding Wisdom In Every Bit
+  </div><br><br>
+  <!-- Table with 3 columns and 5 rows -->
+  <div class="data">
+    <div class="links">
+      <table>
+        <!-- <tr>
+          <th class="rotated"><b>Links</b></th>
+        </tr> -->
+        <tr>
+          <td><b><a href="showingdata.php"class="attractive-link animated-link" >Show Data</a></b></td>
+        </tr>
+        <tr>
+          <td><b><a href="insertingdata.php"class="attractive-link animated-link">New Student</a></b></td>
+        </tr>
+        <tr>
+          <td><b><a href="corrections.php"class="attractive-link animated-link">Corrections</a></b></td>
+        </tr>
+        <tr>
+          <td><b><a href="attendance.php"class="attractive-link animated-link">Attendance</a></b></td>
+        </tr>
+        <tr>
+          <td><b><a href="aboutus.html"class="attractive-link animated-link">About Us</a></b></td>
+        </tr>
+      </table>
+    </div>
+    <div id="calendar"></div>
+  </div><br>
+  <div  class="date-time" id="date-time"></div>
+  <br><br><br><br>
+  <footer class="foot">
+    <p>&copy; 2024 Curious Coder's Club. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+  </footer>
+
+  <script>
+    const contentElement = document.getElementById('content');
+    let time = 0;
+
+    function changeColor() {
+      const frequency = 1; // Adjust the frequency of the wave
+      const amplitude = 25; // Adjust the amplitude of the wave
+
+      const sineValue = Math.sin(frequency * time);
+      const hueValue = Math.round(amplitude * sineValue) + 45; // Adjust the base hue value
+
+      contentElement.style.color = `hsl(${hueValue}, 100%, 50%)`;
+
+      time += 0.1; // Adjust the speed of the wave
+    }
+
+    setInterval(changeColor, 50);
+
+    function formatDate(date) {
+      const year = date.getFullYear();
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, '0');
+      return `${day}-${month}-${year}`;
+    }
+
+    document.querySelector('.attractive-link').addEventListener('click', function() {
+  const link = this;
+
+  // Change color on click
+  link.style.color = '#e44d26';
+
+  // Reset color after 1 second (adjust the duration as needed)
+  setTimeout(function() {
+    link.style.color = 'rgb(249, 213, 7)';
+  }, 1000);
+});
+
+
+    function generateMiniCalendar() {
+  const calendarContainer = document.getElementById('calendar');
+  const today = new Date();
+  const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+  const startingDayOfWeek = firstDay.getDay(); // Get the starting day of the week (0-indexed)
+
+  const daysInMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  // Display day names
+  for (let i = 0; i < dayNames.length; i++) {
+    const dayNameElement = document.createElement('div');
+    dayNameElement.classList.add('day-name');
+    dayNameElement.textContent = dayNames[i];
+    calendarContainer.appendChild(dayNameElement);
+  }
+
+  // Add empty cells for days before the first day of the month
+  for (let i = 0; i < startingDayOfWeek; i++) {
+    const emptyDayElement = document.createElement('div');
+    emptyDayElement.classList.add('day');
+    emptyDayElement.classList.add('empty-day');
+    calendarContainer.appendChild(emptyDayElement);
+  }
+
+  // Display days of the month
+  for (let i = 1; i <= daysInMonth; i++) {
+    const dayElement = document.createElement('div');
+    dayElement.classList.add('day');
+    dayElement.textContent = i;
+
+    if (i === today.getDate()) {
+      dayElement.classList.add('today');
+    }
+
+    calendarContainer.appendChild(dayElement);
+  }
+}
+
+
+    function updateDateTime() {
+      const dateTimeContainer = document.getElementById('date-time');
+      const today = new Date();
+      const formattedDate = formatDate(today);
+      const formattedTime = today.toLocaleTimeString();
+
+      dateTimeContainer.textContent = ` Date: ${formattedDate} | Current Time: ${formattedTime}`;
+    }
+
+    updateDateTime();
+    generateMiniCalendar();
+
+    setInterval(updateDateTime, 1000);
+  </script>
+</body>
+
+</html>
